@@ -1,0 +1,19 @@
+{
+  "name": "ashley-loves-numbers-ts",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jim Lynch",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/expect": "^1.20.4",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.5.3"
+  }
+}
