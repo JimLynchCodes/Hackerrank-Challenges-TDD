@@ -1,0 +1,36 @@
+{
+  "name": "typescript-tdd-good-starter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/ts-mocha/bin/ts-mocha -p ./tsconfig.json ./**/*.test.ts -w --watch-extensions ts",
+    "test": "nyc mocha '**/*.test.ts'"
+  },
+  "author": "Jim",
+  "license": "MIT",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.5.3"
+  }
+}

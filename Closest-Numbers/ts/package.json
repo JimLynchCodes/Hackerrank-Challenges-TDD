@@ -4,7 +4,8 @@
   "description": "Closest Numbers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "",
+    "test": "nyc mocha"
   },
   "author": "Jim",
   "license": "GPL-3.0",
@@ -13,8 +14,30 @@
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
+    "source-map-support": "^0.5.12",
     "ts-mocha": "^6.0.0",
+    "ts-node": "^8.3.0",
     "tsc": "^1.20150623.0",
     "typescript": "^3.5.3"
+  },
+  "nyc": {
+    "include": [
+      "**/*.ts",
+      "**/*.tsx"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
   }
 }

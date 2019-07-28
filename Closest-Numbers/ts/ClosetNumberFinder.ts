@@ -15,7 +15,7 @@ export class ClosestNumberFinder {
             const difference = Math.abs(inputNums[i + 1] - inputNums[i]);
 
             if (!smallestDifference) {
-                smallestDifference = difference;
+                smallestDifference = difference + 1;
                 smallestDifferencePairs.push([inputNums[i], inputNums[i + 1]])
             } else {
 
