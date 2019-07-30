@@ -2,26 +2,26 @@ export class MorganStringBuilder {
 
     static buildMorganString(jackString: string, danielString): string {
 
-        let morganString: string = '';
+        let morganLetters: Array<string> = []
+        let jackLetters: Array<string> = jackString.split('')
+        let danielLetters: Array<string> = danielString.split('')
 
-        while (jackString.length > 0 || danielString.length > 0) {
+        while (jackLetters.length > 0 || danielLetters.length > 0) {
 
-            const jackNextLetter: string = jackString.substr(0, 1)
-            const danielNextLetter: string = danielString.substr(0, 1)
+            const jackNextLetter: string = jackLetters[0]
+            const danielNextLetter: string = danielLetters[0]
 
-            if (jackString.length === 0 || jackNextLetter > danielNextLetter) {
-                morganString += danielNextLetter;
-                danielString = danielString.substring(1)
+            if (jackLetters.length === 0 || jackNextLetter >= danielNextLetter) {
+                morganLetters.push(danielLetters.shift())
             }
-
-            if (danielString.length === 0 || jackNextLetter <= danielNextLetter) {
-                morganString += jackNextLetter;
-                jackString = jackString.substring(1)
+            
+            if (danielLetters.length === 0 || jackNextLetter < danielNextLetter) {
+                morganLetters.push(jackLetters.shift())
             }
 
         }
 
-        return morganString;
+        return morganLetters.join('');
     }
 
 }
