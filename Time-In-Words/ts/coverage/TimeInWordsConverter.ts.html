@@ -125,16 +125,15 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,14 +155,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-yes">21x</span>
@@ -212,41 +204,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">export enum MinuteOrMinutes {
+    minute = "minute",
+    minutes = "minutes"
+}
+&nbsp;
 export class TimeInWordsConverter {
 &nbsp;
+    private static numberSpellingsMap = {
+        1: "one",
+        2: "two",
+        3: "three",
+        4: "four",
+        5: "five",
+        6: "six",
+        7: "seven",
+        8: "eight",
+        9: "nine",
+        10: "ten",
+        11: "eleven",
+        12: "twelve",
+        13: "thirteen",
+        14: "fourteen",
+        15: "fifteen",
+        16: "sixteen",
+        17: "seventeen",
+        18: "eighteen",
+        19: "nineteen",
+        20: "twenty"
+    }
+&nbsp;
     static convertTimeToWords(h: number, m: number): string {
-&nbsp;
-        const numberSpellingsMap = {
-            1: "one",
-            2: "two",
-            3: "three",
-            4: "four",
-            5: "five",
-            6: "six",
-            7: "seven",
-            8: "eight",
-            9: "nine",
-            10: "ten",
-            11: "eleven",
-            12: "twelve",
-            13: "thirteen",
-            14: "fourteen",
-            15: "fifteen",
-            16: "sixteen",
-            17: "seventeen",
-            18: "eighteen",
-            19: "nineteen",
-            20: "twenty",
-            30: "thirty",
-            40: "fourty",
-            50: "fifty"
-        }
-&nbsp;
-        enum MinuteOrMinutes {
-            minute = "minute",
-            minutes = "minutes"
-        }
 &nbsp;
         const lastDigitOfMinutes: string = m.toString().slice(-1)
         const minuteOrMinutes: MinuteOrMinutes = (m === 1 || m === 59) ? MinuteOrMinutes.minute : MinuteOrMinutes.minutes
@@ -256,42 +244,42 @@ export class TimeInWordsConverter {
             return '';
 &nbsp;
         if (m === 0) {
-            return `${numberSpellingsMap[h]} o' clock`
+            return `${this.numberSpellingsMap[h]} o' clock`
         }
 &nbsp;
         if (m === 15) {
-            return `quarter past ${numberSpellingsMap[h]}`
+            return `quarter past ${this.numberSpellingsMap[h]}`
         }
 &nbsp;
         if (m &lt; 30) {
             if (m &lt;= 20)
-                return `${numberSpellingsMap[m]} ${minuteOrMinutes} past ${numberSpellingsMap[h]}`
+                return `${this.numberSpellingsMap[m]} ${minuteOrMinutes} past ${this.numberSpellingsMap[h]}`
 &nbsp;
-            return `twenty ${numberSpellingsMap[lastDigitOfMinutes]} ${minuteOrMinutes} past ${numberSpellingsMap[h]}`
+            return `twenty ${this.numberSpellingsMap[lastDigitOfMinutes]} ${minuteOrMinutes} past ${this.numberSpellingsMap[h]}`
         }
 &nbsp;
         if (m === 30) {
-            return `half past ${numberSpellingsMap[h]}`
+            return `half past ${this.numberSpellingsMap[h]}`
         }
 &nbsp;
         if (m === 45) {
             if (h === 12)
                 h = 0;
 &nbsp;
-            return `quarter to ${numberSpellingsMap[h + 1]}`
+            return `quarter to ${this.numberSpellingsMap[h + 1]}`
         }
 &nbsp;
         if (h === 12)
-        h = 0;
-        
+            h = 0;
+&nbsp;
         // m &gt; 30 
         const minutesTo = 60 - m;
         const lastDigitOfMinutesTo = minutesTo.toString().slice(-1)
 &nbsp;
         if (minutesTo &lt;= 20)
-            return `${numberSpellingsMap[minutesTo]} ${minuteOrMinutes} to ${numberSpellingsMap[h + 1]}`
+            return `${this.numberSpellingsMap[minutesTo]} ${minuteOrMinutes} to ${this.numberSpellingsMap[h + 1]}`
 &nbsp;
-        return `twenty ${numberSpellingsMap[lastDigitOfMinutesTo]} ${minuteOrMinutes} to ${numberSpellingsMap[h + 1]}`
+        return `twenty ${this.numberSpellingsMap[lastDigitOfMinutesTo]} ${minuteOrMinutes} to ${this.numberSpellingsMap[h + 1]}`
 &nbsp;
     }
 &nbsp;
@@ -301,7 +289,7 @@ export class TimeInWordsConverter {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jul 27 2019 23:23:28 GMT-0400 (EDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 28 2019 01:04:11 GMT-0400 (EDT)
 </div>
 </div>
 <script src="prettify.js"></script>

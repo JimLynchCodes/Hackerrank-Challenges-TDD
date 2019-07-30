@@ -1,0 +1,28 @@
+{
+  "name": "morgan-and-a-string",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/ts-mocha/bin/ts-mocha -p ./tsconfig.json ./**/*.test.ts -w --watch-extensions ts",
+    "test": "nyc mocha '**/*.test.ts'"
+  },
+  "author": "Jim",
+  "license": "MIT",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
+  }
+}
